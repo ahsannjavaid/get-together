@@ -1,31 +1,19 @@
-import { useState } from "react";
-import AgoraUIKit from "agora-react-uikit";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home";
+import UIKit from "./components/VideoCall/Kits/UIKit";
+import SDK from "./components/VideoCall/Kits/SDK";
+import Error from "./components/Error/Error";
 
 function App() {
-  const [videoCall, setVideoCall] = useState(true);
-
-  const rtcProps = {
-    appId: "3d1f6eddcea44e1cba76d97ca4b6b4bd",
-    channel: "TestingForIOS",
-    token:
-      "007eJxTYEi7vkPi+zKRVOEDNy2u9StcS1ku/+XQktjzmk8eyP5fEPBFgcE4xTDNLDUlJTk10cQk1TA5KdHcLMXSPDnRJMksySQpJWn1w9SGQEYG49oKJkYGCATxeRlCUotLMvPS3fKLPP2DGRgAmaombQ==",
-  };
-
-  const callbacks = {
-    EndCall: () => setVideoCall(false),
-  };
-
   return (
-    <>
-      <h4 style={{ textAlign: "center" }}>GetTogether (Coming Soon)</h4>
-      {videoCall ? (
-        <div style={{ display: "flex", width: "100vw", height: "100vh" }}>
-          <AgoraUIKit rtcProps={rtcProps} callbacks={callbacks} />
-        </div>
-      ) : (
-        <h3 onClick={() => setVideoCall(true)}>Join</h3>
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/sdk" element={<SDK />} />
+        <Route path="/ui-kit" element={<UIKit />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
