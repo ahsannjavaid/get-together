@@ -1,15 +1,9 @@
 import { useState } from "react";
 import AgoraUIKit from "agora-react-uikit";
+import { rtcProps } from "../../Utils/agora";
 
 function UIKit() {
   const [videoCall, setVideoCall] = useState(false);
-
-  const rtcProps = {
-    appId: "3d1f6eddcea44e1cba76d97ca4b6b4bd",
-    channel: "TestingForIOS",
-    token:
-      "007eJxTYEi7vkPi+zKRVOEDNy2u9StcS1ku/+XQktjzmk8eyP5fEPBFgcE4xTDNLDUlJTk10cQk1TA5KdHcLMXSPDnRJMksySQpJWn1w9SGQEYG49oKJkYGCATxeRlCUotLMvPS3fKLPP2DGRgAmaombQ==",
-  };
 
   const callbacks = {
     EndCall: () => setVideoCall(false),
